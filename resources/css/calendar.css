@@ -1,0 +1,26 @@
+.date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: auto;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: all 0.2s;
+}
+
+.date:hover, .date.active {
+    background: #2a2a2a;
+    color: white;
+}
+
+.date.inactive {
+    color: rgb(158, 158, 158);
+}
+
+.date.inactive:hover {
+    color: rgb(179, 179, 179);
+}

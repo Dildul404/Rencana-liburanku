@@ -23,6 +23,7 @@
                 </div>
             </div>
 
+            {{-- Kalender --}}
             <div class="sm:w-full md:w-full lg:w-160 p-8 rounded-3xl border-1 border-gray-400">
                 <div class="w-full">
                     <div class="flex justify-around p-2">
@@ -52,66 +53,21 @@
         <h1 class="text-center mt-25 mb-10 text-3xl font-bold">Tenang semua sudah direncanakan</h1>
         <h1 class="mx-0 my-3 text-2xl md:mx-20 font-bold">Belum direncanakan</h1>
         <div class="grid grid-cols-1 mx-0 md:mx-20 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach ($destinations as $item)
+
             <div class="shadow-md shadow-black/30">
                 <div class="p-10 aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]"></div>
                 <div class="p-3 md:p-5">
-                    <h3 class="font-bold text-2xl ">Judul liburan</h3>
-                <p class="text-gray-700">sabtu-11-04-2026</p>
-                <p class="text-gray-700">Rp. 20.000.000</p>
-                <p>30 hari</p>
+                    <h3 class="font-bold text-2xl ">{{ $item['judul'] }}</h3>
+                <p class="text-gray-700">{{ $item['tanggal'] }}</p>
+                <p class="text-gray-700">$ {{ $item['budget'] }}</p>
+                <p>{{ $item['lama_liburan'] }}</p>
                 <button class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white">Kunjungi -></button>
                 </div>
             </div>
-            <div class="shadow-md shadow-black/30">
-                <div class="p-10 aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]"></div>
-                <div class="p-3 md:p-5">
-                    <h3 class="font-bold text-2xl">Judul liburan</h3>
-                <p class="text-gray-700">sabtu-11-04-2026</p>
-                <p class="text-gray-700">Rp. 20.000.000</p>
-                <p>30 hari</p>
-                <button class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white">Kunjungi -></button>
-                </div>
-            </div>
-            <div class="shadow-md shadow-black/30">
-                <div class="p-10 aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]"></div>
-                <div class="p-3 md:p-5">
-                    <h3 class="font-bold text-2xl">Judul liburan</h3>
-                <p class="text-gray-700">sabtu-11-04-2026</p>
-                <p class="text-gray-700">Rp. 20.000.000</p>
-                <p>30 hari</p>
-                <button class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white">Kunjungi -></button>
-                </div>
-            </div>
-            <div class="shadow-md shadow-black/30">
-                <div class="p-10 aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]"></div>
-                <div class="p-3 md:p-5">
-                    <h3 class="font-bold text-2xl">Judul liburan</h3>
-                <p class="text-gray-700">sabtu-11-04-2026</p>
-                <p class="text-gray-700">Rp. 20.000.000</p>
-                <p>30 hari</p>
-                <button class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white">Kunjungi -></button>
-                </div>
-            </div>
-            <div class="shadow-md shadow-black/30">
-                <div class="p-10 aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]"></div>
-                <div class="p-3 md:p-5">
-                    <h3 class="font-bold text-2xl">Judul liburan</h3>
-                <p class="text-gray-700">sabtu-11-04-2026</p>
-                <p class="text-gray-700">Rp. 20.000.000</p>
-                <p>30 hari</p>
-                <button class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white">Kunjungi -></button>
-                </div>
-            </div>
-            <div class="shadow-md shadow-black/30">
-                <div class="p-10 aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]"></div>
-                <div class="p-3 md:p-5">
-                    <h3 class="font-bold text-2xl">Judul liburan</h3>
-                <p class="text-gray-700">sabtu-11-04-2026</p>
-                <p class="text-gray-700">Rp. 20.000.000</p>
-                <p>30 hari</p>
-                <button class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white">Kunjungi -></button>
-                </div>
-            </div>
+                
+            @endforeach
+            
         </div>
     </section>
 
@@ -120,7 +76,7 @@
         <a href="/rencana_liburan" class="inline-block text-center p-3 mt-6 bg-white text-black rounded-2xl cursor-pointer transition duration-200 ease-out hover:bg-gray-900 hover:text-white shadow-md hover:-translate-y-1 hover:shadow-lg active:scale-95">Masih luang? Buat lagi yuk -></a>
     </div>
 
-    {{-- Destinasi belum dikunjungi --}}
+    {{-- Destinasi sudah dikunjungi --}}
     <section id="destinasi">
         <h1 class="text-center mt-25 mb-10 text-3xl font-bold">Perjalanan dalam hidupmu</h1>
         <h1 class="mx-0 my-3 text-2xl md:mx-20 font-bold">Sudah dikunjungi</h1>

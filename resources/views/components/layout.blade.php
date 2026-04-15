@@ -17,7 +17,7 @@
 </head>
 <body>
     <x-Navigation></x-Navigation>
-    <section class="p-10">
+    <section class="p-2 md:p-10">
         {{ $slot }}
     </section>
 </body>

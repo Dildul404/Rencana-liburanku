@@ -1,25 +1,184 @@
 <x-Layout>
 
-    <section>
-        <h1>Buat destinasi baru</h1>
-        <form action="/destination" method="POST">
-            <label for="judul">Judul: </label>
-            <input type="text" id="judul" name="judul" required><br>
-            <label for="tanggal">Tanggal keberangkatan: </label>
-            <input type="date" id="tanggal" name="tanggal" required><br>
-            <label for="budget">Budget yang dibutuhkan: </label>
-            <input type="number" id="budget" name="budget" required><br>
-            <label for="lama_liburan">Lama liburan: </label>
-            <input type="text" id="lama_liburan" name="lama_liburan" required>
+    @guest
+    <section class="border-1 border-gray-700 w-full p-4 rounded-xl shadow-md pointer-events-none opacity-70" >
+        <h1 class="text-bold text-2xl border-l-10 px-2 border-indigo-700">Buat destinasi baru</h1>
+        <form action="/destination" method="POST" class="border-t-1 border-gray-700 p-3 mt-5" enctype="multipart/form-data">
+            <table class="w-full">
+                <tr>
+                    <td class="w-1/8">
+                        <label for="judul">Judul</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td class="w-full">
+                        <input type="text" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" name="judul" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="tanggal">Tanggal keberangkatan</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td>
+                        <input type="date" id="tanggal" class="my-2 border-1 w-full border-gray-500 shadow rounded-md" id="judul" name="tanggal" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="budget">Budget yang dibutuhkan</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td>
+                        <input type="number" id="budget" name="budget" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="lama_liburan">Lama liburan</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" id="lama_liburan" name="lama_liburan" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" required>
+                                </td>
+                                <td class="px-3">
+                                    <label for="hari/bulan">Hari/Bulan</label>
+                                </td>
+                                <td>
+                                    <select class="border-1 my-2 w-full border-gray-500 shadow rounded-md" required name="hari/bulan" id="hari/bulan">
+                                        <option value="" selected hidden></option>
+                                        <option value="hari">Hari</option>
+                                        <option value="bulan">Bulan</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                {{-- <tr>
+                    <td>
+                        <label for="foto">Foto</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td>
+                        <input type="file" name="foto" id="image" accept="image/*" required>
+                        <img id="preview" alt="">
+                    </td>
+                </tr> --}}
+            </table>
             {{-- <label for="foto">Foto: </label><br> --}}
-            <button type="submit" class="border-1">Submit</button>
+            <button type="submit" class="w-full bg-indigo-500 rounded-sm cursor-pointer mt-5 text-white hover:scale-101 transition-all duration-300 hover:bg-indigo-400">Submit</button>
         </form>
     </section>
-    <section>
-        <div>Daftar Destinasi</div>
+    @endguest
+    @auth
+    <section class="border-1 border-gray-700 w-full p-4 rounded-xl shadow-md" >
+        <h1 class="text-bold text-2xl border-l-10 px-2 border-indigo-700">Buat destinasi baru</h1>
+        <form action="/destination" method="POST" class="border-t-1 border-gray-700 p-3 mt-5" enctype="multipart/form-data">
+            <table class="w-full">
+                <tr>
+                    <td class="w-1/8">
+                        <label for="judul">Judul</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td class="w-full">
+                        <input type="text" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" name="judul" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="tanggal">Tanggal keberangkatan</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td>
+                        <input type="date" id="tanggal" class="my-2 border-1 w-full border-gray-500 shadow rounded-md" id="judul" name="tanggal" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="budget">Budget yang dibutuhkan</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td>
+                        <input type="number" id="budget" name="budget" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="lama_liburan">Lama liburan</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" id="lama_liburan" name="lama_liburan" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" required>
+                                </td>
+                                <td class="px-3">
+                                    <label for="hari/bulan">Hari/Bulan</label>
+                                </td>
+                                <td>
+                                    <select class="border-1 my-2 w-full border-gray-500 shadow rounded-md" required name="hari/bulan" id="hari/bulan">
+                                        <option value="" selected hidden></option>
+                                        <option value="hari">Hari</option>
+                                        <option value="bulan">Bulan</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                {{-- <tr>
+                    <td>
+                        <label for="foto">Foto</label>
+                    </td>
+                    <td class="px-5">
+                        :
+                    </td>
+                    <td>
+                        <input type="file" name="foto" id="image" accept="image/*" required>
+                        <img id="preview" alt="">
+                    </td>
+                </tr> --}}
+            </table>
+            {{-- <label for="foto">Foto: </label><br> --}}
+            <button type="submit" class="w-full bg-indigo-500 rounded-sm cursor-pointer mt-5 text-white hover:scale-101 transition-all duration-300 hover:bg-indigo-400">Submit</button>
+        </form>
+    </section>
+    @endauth
+    
+    <section class="py-4 md:p-4 ">
+        <div class="text-bold border-b-1 border-gray-700 text-2xl mb-5">Daftar Destinasi</div>
+        @guest
+            <p class="text-gray-700 text-center">Anda belum membuat destinasi</p>
+        @endguest
+        @auth
         <div>
+            @if (count(Auth::user()->destinations) == 0)
+                <p class="text-gray-700 text-center">Anda belum membuat destinasi</p>
+            @endif
 
-            @foreach ($destinations as $item)
+            @foreach (Auth::user()->destinations as $item)
 
             <div class="border-1 border-gray-400 p-4 rounded-md m-2 md:m-5 block md:flex">
                 <div class="w-full md:w-140 rounded-md  bg-[#1A05A2] aspect-[4/2]"></div>
@@ -31,9 +190,9 @@
                     <p>Berangat: {{ $item['tanggal'] }}</p>
                     <p>Budged: $ {{ $item['budget'] }}</p>
                     <p>Lama liburan: {{ $item['lama_liburan'] }}</p>
-                    <div class="block md:flex justify-between py-10">
-                        <a href="/rencana_liburan" class=" p-2 px-4 cursor-pointer rounded-sm bg-gray-900 hover:-translate-y-1 duration-300 hover:bg-gray-700 transition-all  shadow-md text-white ">Buat rencana</a>
-                        <div class="my-4 md:my-0">
+                    <div class="block md:flex justify-between pt-10">
+                        <a href="/rencana_liburan?judul={{ $item['judul'] }}" class=" p-2 px-4 cursor-pointer rounded-sm bg-gray-900 hover:-translate-y-1 duration-300 hover:bg-gray-700 transition-all  shadow-md text-white ">Lihat rencana</a>
+                        <div class="mt-4 md:my-0">
 
                             @if (!$item['status'])
                             
@@ -49,10 +208,10 @@
                     </div>
                 </div>
             </div>
-
             @endforeach
 
         </div>
+        @endauth
     </section>
 
 </x-Layout>

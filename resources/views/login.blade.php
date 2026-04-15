@@ -46,7 +46,7 @@
 
         <p class="mt-10 text-center text-sm/6 text-gray-400">
         Belum memiliki akun?
-        <a href="/" class="font-semibold text-indigo-400 hover:text-indigo-300">Daftar sekarang!</a>
+        <a href="/register" class="font-semibold text-indigo-400 hover:text-indigo-300">Daftar sekarang!</a>
         </p>
     </div>
     </div>

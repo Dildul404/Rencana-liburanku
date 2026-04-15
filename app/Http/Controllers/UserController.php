@@ -25,9 +25,16 @@ class UserController extends Controller
     }
 
     public function store (Request $request) {
-
+        
         // Ambil data
         $data = $request->all();
+
+        // Cek apakah email sudah ada
+        $email = User::where('email', $data['email'])->first();
+
+        if($email) {
+          return redirect('/register')->with('added_email', 'Email sudah terdaftar');
+        }
 
         // Simpan data
         User::create($data);

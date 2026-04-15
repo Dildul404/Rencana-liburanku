@@ -9,25 +9,22 @@ use Illuminate\Support\Facades\Auth;
 class DestinationController extends Controller
 {
     public function showDestination () {
-        if(!Auth::user()) {
-            return redirect('/login');
-        }    
-
-        $destinations = Destination::all();
-        view()->share('destinations', $destinations);
-
         return view('destinasi_liburan');
     }
 
     public function store (Request $request) {
+        
+        // Buat destinasi
+        $lama_liburan = $request['lama_liburan'] . ' ' .  $request['hari/bulan']; 
         Destination::create([
-            'user_id' => Auth::id(),
+            'user_id' =>Auth::id(),
             'judul' => $request['judul'],
             'tanggal' => $request['tanggal'],
             'budget' => $request['budget'],
-            'lama_liburan' => $request['lama_liburan'],
-            'lama_liburan' => $request['lama_liburan'],
+            'lama_liburan' => $lama_liburan,
         ]);
+
+        //jika ada judul duplikat
 
         return redirect('/destinasi_liburan')->with('sucsess', 'Berhasil ditambahkan');
     }

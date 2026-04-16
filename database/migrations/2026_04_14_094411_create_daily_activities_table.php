@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('schedule');
             $table->string('tanggal');
             $table->string('lama_liburan');
+            $table->boolean('checked')->default(false);
             $table->timestamps();
             $table->foreign('destination_id')->references('id')->on('destinations');
         });

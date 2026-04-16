@@ -1,4 +1,5 @@
-const monthYearElement = document.getElementById('monthYear');
+try {
+    const monthYearElement = document.getElementById('monthYear');
 const datesElement = document.getElementById('dates');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -50,3 +51,6 @@ nextBtn.addEventListener('click', () => {
 })
 
 updateCalendar();
+} catch (err) {
+    console.log(err);
+}

@@ -1,4 +1,5 @@
 <x-layout>
+
     {{-- Header --}}
     <header>
         <h1 class="font-bold text-4xl md:text-5xl lg:text-5xl font-sans text-center py-13">Rilekskan fikiran dengan bepergian</h1>
@@ -11,32 +12,48 @@
                 </div>
                 <div class="flex flex-col justify-center items-center md:flex-row md:justify-between gap-1">
                     <div class="p-4 w-45 rounded-2xl border-2 my-4 border-gray-700">
-                        <h3 class="font-bold text-4xl pb-5 text-center">{{ count(Auth::user()->destinations)}}</h3>
+                        <h3 class="font-bold text-4xl pb-5 text-center">
+                            @guest
+                                -
+                            @endguest
+                            @auth
+                                @if ($user)
+                                    {{ $user->destinations->count() == 1 ?: '-'}}
+                                @else
+                                    -
+                                @endif
+                            @endauth
+                        </h3>
                         <p class="text-center text-gray-900">Destinasi</p>
                     </div>
                     <div class="p-4 w-45 rounded-2xl border-2 my-4 border-gray-700">
-                        @php
-                        $spot_aktifitas = 0;
-
-                        foreach (Auth::user()->destinations as $destination) {
-                            $locations = count($destination->locations);
-                            $activities = count($destination->Daily_activities);
-
-                            $spot_aktifitas += $locations + $activities;
-                        }
-
-                        $tercapai = 0;
-                        foreach (Auth::user()->destinations as $destination) {
-                            if ($destination->status == true) {
-                                $tercapai++; 
-                            }
-                        }
-                        @endphp
-                        <h3 class="font-bold text-4xl pb-5 text-center">{{ $spot_aktifitas }}</h3>
+                        <h3 class="font-bold text-4xl pb-5 text-center">
+                            @guest
+                                -
+                            @endguest
+                            @auth
+                                @if ($spot_aktifitas)
+                                    {{ $spot_aktifitas }}
+                                @else
+                                    -
+                                @endif
+                            @endauth
+                        </h3>
                         <p class="text-center text-gray-900">Spots & aktifitas</p>
                     </div>
                     <div class="p-4 w-45 rounded-2xl border-2 my-4 border-gray-700">
-                        <h3 class="font-bold text-4xl pb-5 text-center">{{ $tercapai }}</h3>
+                        <h3 class="font-bold text-4xl pb-5 text-center">
+                            @guest
+                                -
+                            @endguest
+                            @auth
+                                @if ($tercapai)
+                                    {{ $tercapai }}
+                                @else
+                                    -
+                                @endif
+                            @endauth
+                        </h3>
                         <p class="text-center text-gray-900">tercapai</p>
                     </div>
                 </div>
@@ -74,19 +91,19 @@
         <section id="destinasi">
             <h1 class="text-center mt-25 mb-10 text-3xl font-bold">Tenang semua sudah direncanakan</h1>
             <h1 class="mx-0 my-3 text-2xl md:mx-20 font-bold">Belum direncanakan</h1>
-            @if (count(Auth::user()->destinations) == 0)
+            @if (count($user->destinations) == 0)
                 <p class="text-gray-700 text-center py-20">Anda belum membuat destinasi</p>
             @endif
             <div class="grid grid-cols-1 mx-0 md:mx-20 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach (Auth::user()->destinations as $item)
+                @foreach ($user->destinations as $item)
                     <div class="shadow-md shadow-black/30">
-                        <div class="p-10 aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]"></div>
+                        <img src="{{ asset('storage/' . $item->image) }}" class="aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]">
                         <div class="p-3 md:p-5">
                             <h3 class="font-bold text-2xl ">{{ $item['judul'] }}</h3>
                         <p class="text-gray-700">{{ $item['tanggal'] }}</p>
-                        <p class="text-gray-700">$ {{ $item['budget'] }}</p>
+                        <p class="text-gray-700">{{'Rp '. number_format($item['budget'], 0, ',', '.') }}</p>
                         <p>{{ $item['lama_liburan'] }}</p>
-                        <button class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white">Detail -></button>
+                        <a href="/destinasi_liburan" class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white block">Detail -></a>
                         </div>
                     </div>
                 @endforeach
@@ -94,7 +111,7 @@
         </section>
 
         {{-- Navigasi rencana liburan --}}
-        @if (count(Auth::user()->destinations) == 0)
+        @if (count($user->destinations) == 0)
             <div class="text-center">
                 <a href="/destinasi_liburan" class="inline-block text-center p-3 mt-6 bg-white text-black rounded-2xl cursor-pointer transition duration-200 ease-out hover:bg-gray-900 hover:text-white shadow-md hover:-translate-y-1 hover:shadow-lg active:scale-95">Masih luang? Buat yuk -></a>
             </div>
@@ -110,14 +127,14 @@
             <h1 class="mx-0 my-3 text-2xl md:mx-20 font-bold">Sudah dikunjungi</h1>
             <div class="grid grid-cols-1 mx-0 md:mx-20 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                @foreach (Auth::user()->destinations as $item)
+                @foreach ($user->destinations as $item)
                 @if ($item->status == true)
                     <div class="shadow-md shadow-black/30">
-                        <div class="p-10 aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]"></div>
+                        <img src="{{ asset('storage/' . $item->image) }}" class="aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]">
                         <div class="p-3 md:p-5">
                             <h3 class="font-bold text-2xl ">{{ $item['judul'] }}</h3>
                         <p class="text-gray-700">{{ $item['tanggal'] }}</p>
-                        <p class="text-gray-700">$ {{ $item['budget'] }}</p>
+                        <p class="text-gray-700">{{'Rp '. number_format($item['budget'], 0, ',', '.') }}</p>
                         <p>{{ $item['lama_liburan'] }}</p>
                         <button class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white">Detail -></button>
                         </div>

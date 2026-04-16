@@ -9,7 +9,7 @@ use PhpParser\Node\Expr\FuncCall;
 
 class Location extends Model
 {
-    protected $fillable = ['destination_id','location'];
+    protected $fillable = ['destination_id','location','checked'];
 
     // Belongs to destination
     public function destination (): BelongsTo {

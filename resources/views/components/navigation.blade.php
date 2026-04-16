@@ -24,7 +24,6 @@
             <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
             <x-nav-anchore href="/home" >Home</x-nav-anchore>
             <x-nav-anchore href="/destinasi_liburan" >Destinasi liburan</x-nav-anchore>
-            <x-nav-anchore href="/rencana_liburan" >Rencana liburan</x-nav-anchore>
           </div>
         </div>
       </div>
@@ -58,7 +57,6 @@
       <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
       <x-nav-anchore-mobile href="/home">Home</x-nav-anchore-mobile>
       <x-nav-anchore-mobile href="/destinasi_liburan">Destinasi liburan</x-nav-anchore-mobile>
-      <x-nav-anchore-mobile href="/rencana_liburan">Rencana liburan</x-nav-anchore-mobile><br>
       {{-- Log out toggle --}}
       <button class="w-full rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Logout</button>
     </div>

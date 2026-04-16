@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Destination extends Model
 {
-    Protected $fillable = ['user_id','judul','tanggal','budget','lama_liburan','status',];
+    Protected $fillable = ['user_id','judul','tanggal','budget','lama_liburan','image','status',];
 
     // Relationship belong to User
     public function user(): BelongsTo

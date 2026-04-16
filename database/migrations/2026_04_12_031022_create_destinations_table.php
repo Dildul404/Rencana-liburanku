@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('judul')->unique();
+            $table->string('judul');
             $table->string('tanggal');
             $table->integer('budget');
             $table->string('lama_liburan');
+            $table->string('image')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

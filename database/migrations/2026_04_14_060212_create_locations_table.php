@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('destination_id');
             $table->string('location');
+            $table->boolean('checked')->default(false);
             $table->timestamps();
             $table->foreign('destination_id')->references('id')->on('destinations');
         });

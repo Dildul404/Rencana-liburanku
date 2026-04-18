@@ -88,4 +88,20 @@ class DestinationController extends Controller
 
         return redirect('/destinasi_liburan')->with('sucsess', 'Berhasil dihapus');
     }
+
+    public function statusTrue (Request $request) {
+        Destination::where('id', $request->id)->update([
+            'status' => 1
+        ]);
+
+        return redirect('/rencana_liburan?judul=' . $request['judul'] . '&id=' . $request->id)->with('judul', $request['judul']);
+    }
+
+    public function statusFalse (Request $request) {
+        Destination::where('id', $request->id)->update([
+            'status' => 0
+        ]);
+
+        return redirect('/rencana_liburan?judul=' . $request['judul'] . '&id=' . $request->id)->with('judul', $request['judul']);
+    }
 }

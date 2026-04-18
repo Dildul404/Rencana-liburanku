@@ -41,3 +41,15 @@ Route::post('/edit_location', [HolidayPlanController::class, 'editLocation']);
 Route::post('/delete_location', [HolidayPlanController::class, 'deleteLocation']);
 
 Route::post('/activities', [HolidayPlanController::class, 'storeActivities']);
+
+Route::post('/activity_checked', [HolidayPlanController::class, 'checkActivity']);
+
+Route::post('/activity_unchecked', [HolidayPlanController::class, 'uncheckActivity']);
+
+Route::post('/edit_activity', [HolidayPlanController::class, 'editActivity']);
+
+Route::post('/delete_activity', [HolidayPlanController::class, 'deleteActivity']);
+
+Route::post('/status_sucsess_destination', [DestinationController::class, 'statusTrue']);
+
+Route::post('/status_didn_sucsess_destination', [DestinationController::class, 'statusFalse']);

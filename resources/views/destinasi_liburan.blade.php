@@ -27,16 +27,16 @@
             <div id="add_form_destination">
                 <h1 class="text-bold text-2xl border-l-10 px-2 border-indigo-700">Buat destinasi baru</h1>
                 <form action="/destination" method="POST" class="border-t-1 border-gray-700 p-3 mt-5" enctype="multipart/form-data">
-                    <table class="w-full">
+                    <table class="md:w-full">
                         <tr>
-                            <td class="w-1/8">
+                            <td class="">
                                 <label for="judul">Judul</label>
                             </td>
                             <td class="px-5">
                                 :
                             </td>
-                            <td class="w-full">
-                                <input type="text" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" name="judul" required>
+                            <td class="">
+                                <input type="text" class="border-1 my-2 block w-full border-gray-500 shadow rounded-md" id="judul" name="judul" required>
                             </td>
                         </tr>
                         <tr>
@@ -47,7 +47,7 @@
                                 :
                             </td>
                             <td>
-                                <input type="date" id="tanggal" class="my-2 border-1 w-full border-gray-500 shadow rounded-md" id="judul" name="tanggal" required>
+                                <input type="date" id="tanggal" class="my-2 border-1 block w-full border-gray-500 shadow rounded-md" id="judul" name="tanggal" required>
                             </td>
                         </tr>
                         <tr>
@@ -58,7 +58,7 @@
                                 :
                             </td>
                             <td>
-                                <input type="number" placeholder="Rupiah" id="budget" name="budget" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" required>
+                                <input type="number" placeholder="Rupiah" id="budget" name="budget" class="border-1 my-2 block w-full border-gray-500 shadow rounded-md" id="judul" required>
                             </td>
                         </tr>
                         <tr>
@@ -69,7 +69,7 @@
                                 :
                             </td>
                             <td>
-                                <input placeholder="Hari" type="number" id="lama_liburan" name="lama_liburan" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" required>
+                                <input placeholder="Hari" type="number" id="lama_liburan" name="lama_liburan" class="border-1 my-2 block w-full border-gray-500 shadow rounded-md" id="judul" required>
                             </td>
                         </tr>
                         <tr>
@@ -80,7 +80,7 @@
                                 :
                             </td>
                             <td>
-                                <input type="file" name="image" id="image" accept="image/*" required>
+                                <input type="file" name="image" id="image" accept="image/*" class="block w-full max-w-full"  required>
                                 <img id="preview" alt="">
                             </td>
                         </tr>
@@ -102,7 +102,7 @@
                             <td class="w-full">
                                 <input type="text" name="edit_id" hidden>
                                 <input type="text" name="edit_user_id" hidden>
-                                <input type="text" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" name="edit_judul" required>
+                                <input type="text" class="border-1 my-2 block w-full border-gray-500 shadow rounded-md" id="judul" name="edit_judul" required>
                             </td>
                         </tr>
                         <tr>
@@ -113,7 +113,7 @@
                                 :
                             </td>
                             <td>
-                                <input type="date" id="tanggal" class="my-2 border-1 w-full border-gray-500 shadow rounded-md" id="judul" name="edit_tanggal" required>
+                                <input type="date" id="tanggal" class="my-2 border-1 block w-full border-gray-500 shadow rounded-md" id="judul" name="edit_tanggal" required>
                             </td>
                         </tr>
                         <tr>
@@ -124,7 +124,7 @@
                                 :
                             </td>
                             <td>
-                                <input type="number" placeholder="Rupiah" id="budget" name="edit_budget" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" required>
+                                <input type="number" placeholder="Rupiah" id="budget" name="edit_budget" class="border-1 my-2 block w-full border-gray-500 shadow rounded-md" id="judul" required>
                             </td>
                         </tr>
                         <tr>
@@ -135,7 +135,7 @@
                                 :
                             </td>
                             <td>
-                                <input placeholder="Hari" type="number" id="lama_liburan" name="edit_lama_liburan" class="border-1 my-2 w-full border-gray-500 shadow rounded-md" id="judul" required>
+                                <input placeholder="Hari" type="number" id="lama_liburan" name="edit_lama_liburan" class="border-1 my-2 block w-full border-gray-500 shadow rounded-md" id="judul" required>
                             </td>
                         </tr>
                         <tr>
@@ -146,7 +146,7 @@
                                 :
                             </td>
                             <td>
-                                <input type="file" name="edit_image" id="image" accept="image/*" required>
+                                <input type="file" name="edit_image" id="image" accept="image/*" required class="block w-full max-w-full" >
                                 <img id="preview" alt="">
                             </td>
                         </tr>
@@ -204,7 +204,7 @@
                         </tr>
                     </table>
                     <div class="block md:flex justify-between pt-10">
-                        <a href="/rencana_liburan?judul={{ $item['judul'] }}" class=" p-2 px-4 cursor-pointer rounded-sm bg-gray-900 hover:-translate-y-1 duration-300 hover:bg-gray-700 transition-all  shadow-md text-white ">Lihat rencana</a>
+                        <a href="/rencana_liburan?judul={{ $item['judul'] }}&id={{ $item['id'] }}" class=" p-2 px-4 cursor-pointer rounded-sm bg-gray-900 hover:-translate-y-1 duration-300 hover:bg-gray-700 transition-all  shadow-md text-white ">Lihat rencana</a>
                         <div class="mt-4 md:my-0">
 
                             @if (!$item['status'])

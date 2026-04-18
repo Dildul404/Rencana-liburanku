@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Daily_activity extends Model
 {
-    Protected $fillable = ['destination_id','activities','schedule','tanggal','lama_liburan'];
+    Protected $fillable = ['destination_id','activities','schedule', 'time','tanggal','lama_liburan'];
 
     // Belongs to destination
     public function destination(): BelongsTo {

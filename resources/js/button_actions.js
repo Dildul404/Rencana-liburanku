@@ -2,10 +2,12 @@
 try {
     const toggle = document.getElementById('location_toggle');
     const toggle_output = document.getElementById('location_form');
+    const location_edit_form = document.getElementById('edit_form_location');
     const form_btn = document.getElementById('location_form_btn');
 
     toggle.addEventListener('click', () => {
         toggle_output.classList.remove('hidden');
+        location_edit_form.classList.add('hidden');
     })
 
     
@@ -21,9 +23,11 @@ try {
 try {
     const activity_toggle = document.getElementById('activity_toggle');
     const activity_form = document.getElementById('form_activity');
+    const activity_edit_form = document.getElementById('activity_edit_form');
 
     activity_toggle.addEventListener('click', () => {
         activity_form.classList.remove('hidden');
+        activity_edit_form.classList.add('hidden');
     })
 } catch (err) {
     console.log(err);
@@ -107,6 +111,7 @@ try {
 try {
     const location_edit_toggle = document.querySelectorAll('.location_edit_toggle');
     const location_edit_form = document.getElementById('edit_form_location');
+    const toggle_output = document.getElementById('location_form');
 
     const location = document.querySelector('[name="edit_location"]');
     const id = document.querySelector('[name="edit_id"]');
@@ -114,6 +119,7 @@ try {
     location_edit_toggle.forEach(element => {
         element.addEventListener('click', ()=> {
             location_edit_form.classList.remove('hidden');
+            toggle_output.classList.add('hidden');
             location.setAttribute('value', element.getAttribute('data'));
             id.setAttribute('value', element.getAttribute('data-id'));
         })
@@ -132,5 +138,33 @@ try {
         })
     })
 } catch (err) {
+    console.log(err);
+}
 
+// Edit activity toggle
+try {
+    const activity_edit_toggle = document.querySelectorAll('.activity_edit_toggle');
+    const activity_edit_form = document.getElementById('activity_edit_form');
+    const activity_form = document.getElementById('form_activity');
+
+    const id = document.querySelector('[name="edit_activity_id"]');
+    const activity = document.querySelector('[name="edit_activity"]');
+    const schedule = document.querySelector('[name="edit_schedule"]');
+    const time = document.querySelector('[name="edit_time"]');
+
+    activity_edit_toggle.forEach(element => {
+        element.addEventListener('click', ()=> {
+            activity_edit_form.classList.remove('hidden');
+            activity_form.classList.add('hidden');
+            const data = JSON.parse(element.getAttribute('data'));
+            let tgl = new Date(data.schedule).toLocaleDateString('en-CA');
+
+            id.setAttribute('value', data.id);
+            activity.setAttribute('value', data.activities);
+            schedule.setAttribute('value', tgl);
+            time.setAttribute('value', data.time);
+        })
+    });
+} catch (err) {
+    console.log(err);
 }

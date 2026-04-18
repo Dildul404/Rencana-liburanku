@@ -18,7 +18,7 @@
                             @endguest
                             @auth
                                 @if ($user)
-                                    {{ $user->destinations->count() == 1 ?: '-'}}
+                                    {{ $user->destinations ? count($user->destinations) : '-'}}
                                 @else
                                     -
                                 @endif
@@ -96,16 +96,18 @@
             @endif
             <div class="grid grid-cols-1 mx-0 md:mx-20 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($user->destinations as $item)
-                    <div class="shadow-md shadow-black/30">
-                        <img src="{{ asset('storage/' . $item->image) }}" class="aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]">
-                        <div class="p-3 md:p-5">
-                            <h3 class="font-bold text-2xl ">{{ $item['judul'] }}</h3>
-                        <p class="text-gray-700">{{ $item['tanggal'] }}</p>
-                        <p class="text-gray-700">{{'Rp '. number_format($item['budget'], 0, ',', '.') }}</p>
-                        <p>{{ $item['lama_liburan'] }}</p>
-                        <a href="/destinasi_liburan" class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white block">Detail -></a>
+                    @if ($item->status == false)
+                        <div class="shadow-md shadow-black/30">
+                            <img src="{{ asset('storage/' . $item->image) }}" class="aspect-[9/5] sm:rounded-t-md md:rounded-t-lg bg-[#F77F00]">
+                            <div class="p-3 md:p-5">
+                                <h3 class="font-bold text-2xl ">{{ $item['judul'] }}</h3>
+                            <p class="text-gray-700">{{ $item['tanggal'] }}</p>
+                            <p class="text-gray-700">{{'Rp '. number_format($item['budget'], 0, ',', '.') }}</p>
+                            <p>{{ $item['lama_liburan'] . ' Hari'}}</p>
+                            <a href="/destinasi_liburan" class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white block">Detail -></a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </section>
@@ -135,15 +137,12 @@
                             <h3 class="font-bold text-2xl ">{{ $item['judul'] }}</h3>
                         <p class="text-gray-700">{{ $item['tanggal'] }}</p>
                         <p class="text-gray-700">{{'Rp '. number_format($item['budget'], 0, ',', '.') }}</p>
-                        <p>{{ $item['lama_liburan'] }}</p>
-                        <button class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white">Detail -></button>
+                        <p>{{ $item['lama_liburan'] . ' Hari'}}</p>
+                        <a href="/destinasi_liburan" class="p-2 w-30 hover:bg-gray-950/80 hover:-translate-y-1 cursor-pointer mt-6 transition-all duration-200 bg-black rounded-sm text-white block">Detail -></a>
                         </div>
                     </div>
-                @else
-                    <p class="text-gray-700 text-center py-20">Belum ada destinasi yang sudah dikunjungi</p>
                 @endif
                 @endforeach
-
             </div>
         </section>
     @endauth

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('destination_id');
             $table->string('activities');
             $table->timestamp('schedule');
+            $table->time('time');
             $table->string('tanggal');
             $table->string('lama_liburan');
             $table->boolean('checked')->default(false);

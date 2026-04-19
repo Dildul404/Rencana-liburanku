@@ -18,9 +18,9 @@
                             @endguest
                             @auth
                                 @if ($user)
-                                    {{ count($user->destinations) == 1 ? count($user->destinations) : '-'}}
+                                    {{ count($user->destinations) }}
                                 @else
-                                    -
+                                    0
                                 @endif
                             @endauth
                         </h3>
@@ -35,7 +35,7 @@
                                 @if ($spot_aktifitas)
                                     {{ $spot_aktifitas }}
                                 @else
-                                    -
+                                    0
                                 @endif
                             @endauth
                         </h3>
@@ -50,7 +50,7 @@
                                 @if ($tercapai)
                                     {{ $tercapai }}
                                 @else
-                                    -
+                                    0
                                 @endif
                             @endauth
                         </h3>

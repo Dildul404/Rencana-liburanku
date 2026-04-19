@@ -99,8 +99,10 @@ try {
     const delete_toggle = document.querySelectorAll('.delete_destination');
 
     delete_toggle.forEach(element => {
-        element.addEventListener('click', ()=> {
-            return confirm('apakah anda yakin?');
+        element.addEventListener('click', (e)=> {
+            if (!confirm('Apakah anda yakin?')) {
+                e.preventDefault();
+            }
         })
     })
 } catch (err) {
@@ -133,8 +135,10 @@ try {
     const location_delete_toggle = document.querySelectorAll('.location_delete_toggle');
 
     location_delete_toggle.forEach(element => {
-        element.addEventListener('click', ()=> {
-            return confirm('apakah anda yakin?');
+        element.addEventListener('click', (e)=> {
+            if (!confirm('Apakah anda yakin?')) {
+                e.preventDefault();
+            }
         })
     })
 } catch (err) {

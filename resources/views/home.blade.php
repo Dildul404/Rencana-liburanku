@@ -18,7 +18,7 @@
                             @endguest
                             @auth
                                 @if ($user)
-                                    {{ $user->destinations ? count($user->destinations) : '-'}}
+                                    {{ count($user->destinations) == 1 ? count($user->destinations) : '-'}}
                                 @else
                                     -
                                 @endif
